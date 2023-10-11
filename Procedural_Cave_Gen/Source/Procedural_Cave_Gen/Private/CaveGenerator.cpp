@@ -21,6 +21,7 @@ void ACaveGenerator::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	GenerateNewCave(DeltaTime);
 }
 
 void ACaveGenerator::GenerateCave()
@@ -33,6 +34,20 @@ void ACaveGenerator::GenerateCave()
 	}
 
 	RandomFillCave();
+
+	for (unsigned char i = 0; i < 5; i++)
+	{
+		SmoothCave();
+	}
+
+	//purely for the gizmos
+	for (unsigned char x = 0; x < width; x++)
+	{
+		for (unsigned char y = 0; y < height; y++)
+		{
+			TestGizmos(x, y);
+		}
+	}
 }
 
 void ACaveGenerator::RandomFillCave()
@@ -48,10 +63,70 @@ void ACaveGenerator::RandomFillCave()
 		{
 			float randomValue = randomStream.FRandRange(0, 100);
 
-			cave[x][y] = (randomValue < randomFillPercent) ? 1 : 0;
+			if (x == 0 || x == width || y == 0 || y == height)
+			{
+				cave[x][y] = 1;
+			}
 
-			TestGizmos(x, y);
+			cave[x][y] = (randomValue < randomFillPercent) ? 1 : 0;	
 		}
+	}
+}
+
+void ACaveGenerator::SmoothCave()
+{
+	for (unsigned char x = 0; x < width; x++)
+	{
+		for (unsigned char y = 0; y < height; y++)
+		{
+			unsigned short neighbouringWalls = GetNeighbouringWalls(x, y);
+
+			if (neighbouringWalls > 4)
+			{
+				cave[x][y] = 1;
+			}
+			else if (neighbouringWalls < 4)
+			{
+				cave[x][y] = 0;
+			}
+		}
+	}
+}
+
+unsigned short ACaveGenerator::GetNeighbouringWalls(unsigned char _x, unsigned char _y)
+{
+	unsigned short wallCount = 0;
+
+	for (unsigned char x = _x - 1; x <= _x + 1; x++)
+	{
+		for (unsigned char y = _y - 1; y <= _y + 1; y++)
+		{
+			if (x >= 0 && x < width && y >= 0 && y < height)
+			{
+				if (x != _x || y != _y)
+				{
+					wallCount += cave[x][y];
+				}
+			}
+
+			else
+			{
+				wallCount++;
+			}
+		}
+	}
+
+	return wallCount;
+}
+
+void ACaveGenerator::GenerateNewCave(float DeltaTime)
+{
+	timer -= 1.0f * DeltaTime;
+
+	if (timer <= 0)
+	{
+		GenerateCave();
+		timer = 5.0f;
 	}
 }
 

@@ -29,11 +29,17 @@ public:
 	unsigned char width = 60;
 	unsigned char height = 60;
 
+	float timer = 3.0f;
+
 	TArray<TArray<char>> cave;
 
 	void GenerateCave();
 
 	void RandomFillCave();
+	void SmoothCave();
+	unsigned short GetNeighbouringWalls(unsigned char _x, unsigned char _y);
+	void GenerateNewCave(float DeltaTime);
+
 
 	void TestGizmos(unsigned char _x, unsigned char _y);
 };
