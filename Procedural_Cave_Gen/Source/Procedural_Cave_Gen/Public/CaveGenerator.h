@@ -22,12 +22,18 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = 0, ClampMax = 100))
-	unsigned int randomFillPercent;
+	unsigned int randomFillPercent = 45;
 
-	unsigned char width;
-	unsigned char height;
+	FString seed;
+
+	unsigned char width = 60;
+	unsigned char height = 60;
 
 	TArray<TArray<char>> cave;
 
 	void GenerateCave();
+
+	void RandomFillCave();
+
+	void TestGizmos(unsigned char _x, unsigned char _y);
 };
