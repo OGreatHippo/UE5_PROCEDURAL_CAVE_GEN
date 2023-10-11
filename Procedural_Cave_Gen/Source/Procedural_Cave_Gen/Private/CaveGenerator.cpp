@@ -63,7 +63,7 @@ void ACaveGenerator::RandomFillCave()
 		{
 			float randomValue = randomStream.FRandRange(0, 100);
 
-			if (x == 0 || x == width || y == 0 || y == height)
+			if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
 			{
 				cave[x][y] = 1;
 			}
@@ -93,9 +93,9 @@ void ACaveGenerator::SmoothCave()
 	}
 }
 
-unsigned short ACaveGenerator::GetNeighbouringWalls(unsigned char _x, unsigned char _y)
+unsigned char ACaveGenerator::GetNeighbouringWalls(unsigned char _x, unsigned char _y)
 {
-	unsigned short wallCount = 0;
+	unsigned char wallCount = 0;
 
 	for (unsigned char x = _x - 1; x <= _x + 1; x++)
 	{

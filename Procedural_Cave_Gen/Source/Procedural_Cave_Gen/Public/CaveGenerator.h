@@ -37,7 +37,7 @@ public:
 
 	void RandomFillCave();
 	void SmoothCave();
-	unsigned short GetNeighbouringWalls(unsigned char _x, unsigned char _y);
+	unsigned char GetNeighbouringWalls(unsigned char _x, unsigned char _y);
 	void GenerateNewCave(float DeltaTime);
 
 
