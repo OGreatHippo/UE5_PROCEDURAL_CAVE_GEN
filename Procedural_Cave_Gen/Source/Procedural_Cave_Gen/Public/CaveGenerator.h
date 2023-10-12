@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "MeshGenerator.h"
+#include "ProceduralMeshComponent.h"
 #include "GameFramework/Actor.h"
 #include "CaveGenerator.generated.h"
 
@@ -42,6 +43,4 @@ public:
 	void GenerateNewCave(float DeltaTime);
 
 	MeshGenerator meshGen;
-
-	
 };
