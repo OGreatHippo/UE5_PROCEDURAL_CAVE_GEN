@@ -6,17 +6,11 @@ MeshGenerator::MeshGenerator()
 
 MeshGenerator::~MeshGenerator()
 {
-	squareGrid->squares.Empty();
-	vertices.Empty();
-	triangles.Empty();
+	
 }
 
 void MeshGenerator::GenerateMesh(TArray<TArray<unsigned char>> _cave, unsigned char _squareSize/*, UStaticMeshComponent* _mesh*/)
 {
-	squareGrid->squares.Empty();
-	vertices.Empty();
-	triangles.Empty();
-
 	squareGrid = new SquareGrid(_cave, _squareSize);
 
 	vertices = TArray<FVector>();
@@ -29,14 +23,6 @@ void MeshGenerator::GenerateMesh(TArray<TArray<unsigned char>> _cave, unsigned c
 			TrigangulateSquare(squareGrid->squares[x][y]);
 		}
 	}
-
-	/*if (_mesh)
-	{
-		set mesh vertices to vertices in mesh gen
-		set mesh triangles to triangles in mesh gen
-		recalculate normals
-
-	}*/
 }
 
 void MeshGenerator::TrigangulateSquare(Square _square)
