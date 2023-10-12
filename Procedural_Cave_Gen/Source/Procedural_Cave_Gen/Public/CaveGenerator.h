@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "MeshGenerator.h"
 #include "GameFramework/Actor.h"
 #include "CaveGenerator.generated.h"
 
@@ -31,7 +32,7 @@ public:
 
 	float timer = 3.0f;
 
-	TArray<TArray<char>> cave;
+	TArray<TArray<unsigned char>> cave;
 
 	void GenerateCave();
 
@@ -40,6 +41,5 @@ public:
 	unsigned char GetNeighbouringWalls(unsigned char _x, unsigned char _y);
 	void GenerateNewCave(float DeltaTime);
 
-
-	void TestGizmos(unsigned char _x, unsigned char _y);
+	MeshGenerator meshGen;
 };

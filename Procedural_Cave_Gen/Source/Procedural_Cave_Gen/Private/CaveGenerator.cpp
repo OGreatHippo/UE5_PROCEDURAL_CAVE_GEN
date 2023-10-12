@@ -26,7 +26,7 @@ void ACaveGenerator::Tick(float DeltaTime)
 
 void ACaveGenerator::GenerateCave()
 {
-	cave.Init(TArray<char>(), width);
+	cave.Init(TArray<unsigned char>(), width);
 	
 	for (unsigned char x = 0; x < width; x++)
 	{
@@ -40,14 +40,7 @@ void ACaveGenerator::GenerateCave()
 		SmoothCave();
 	}
 
-	//purely for the gizmos
-	for (unsigned char x = 0; x < width; x++)
-	{
-		for (unsigned char y = 0; y < height; y++)
-		{
-			TestGizmos(x, y);
-		}
-	}
+	meshGen.GenerateMesh(cave, 1, GetWorld());
 }
 
 void ACaveGenerator::RandomFillCave()
@@ -127,17 +120,6 @@ void ACaveGenerator::GenerateNewCave(float DeltaTime)
 	{
 		GenerateCave();
 		timer = 5.0f;
-	}
-}
-
-void ACaveGenerator::TestGizmos(unsigned char _x, unsigned char _y)
-{
-	if (!cave.IsEmpty())
-	{
-		FColor cubeColour = (cave[_x][_y] == 1) ? FColor::Black : FColor::White;
-		FVector position = FVector(-width / 2 + _x + 0.5f, 0.0f, -height / 2 + _y + 0.5f);
-
-		DrawDebugSolidBox(GetWorld(), position, FVector(0.5f), cubeColour, true);
 	}
 }
 
