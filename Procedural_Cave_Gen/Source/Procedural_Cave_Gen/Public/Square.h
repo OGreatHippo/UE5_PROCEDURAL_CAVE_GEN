@@ -20,5 +20,7 @@ public:
 	Node* centreBottom;
 	Node* centreLeft;
 
+	unsigned char configuration;
+
 	Square(ControlNode* _topLeft, ControlNode* _topRight, ControlNode* _bottomRight, ControlNode* _bottomLeft);
 };

@@ -6,6 +6,7 @@ Node::Node()
 
 Node::~Node()
 {
+	
 }
 
 Node::Node(FVector _pos)

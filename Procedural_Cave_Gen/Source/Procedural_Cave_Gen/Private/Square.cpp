@@ -19,4 +19,21 @@ Square::Square(ControlNode* _topLeft, ControlNode* _topRight, ControlNode* _bott
 	centreRight = bottomRight->above;
 	centreBottom = bottomLeft->right;
 	centreLeft = bottomLeft->above;
+
+	if (topLeft->active)
+	{
+		configuration += 8;
+	}
+	if (topRight->active)
+	{
+		configuration += 4;
+	}
+	if (bottomRight->active)
+	{
+		configuration += 2;
+	}
+	if (bottomLeft->active)
+	{
+		configuration += 1;
+	}
 }

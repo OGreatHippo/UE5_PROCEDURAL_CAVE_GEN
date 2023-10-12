@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "Node.h"
 
-class PROCEDURAL_CAVE_GEN_API ControlNode : Node
+class PROCEDURAL_CAVE_GEN_API ControlNode : public Node
 {
 public:
 	ControlNode();

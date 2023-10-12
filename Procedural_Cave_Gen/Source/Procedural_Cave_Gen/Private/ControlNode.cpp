@@ -12,8 +12,8 @@ ControlNode::ControlNode(FVector _pos, bool _active, unsigned char squareSize) :
 {
 	active = _active;
 
-	//Might be wrong
-	pos = _pos;
+	////Might be wrong
+	//pos = _pos;
 
 	//Might need to create NewObject for above and right node first -> above = NewObject<Node>();
 	above = new Node();
