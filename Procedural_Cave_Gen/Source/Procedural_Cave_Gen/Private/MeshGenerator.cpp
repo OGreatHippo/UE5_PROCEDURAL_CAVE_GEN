@@ -13,8 +13,8 @@ void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UPr
 {
 	squareGrid = new SquareGrid(_cave, _squareSize);
 
-	vertices = TArray<FVector>();
-	triangles = TArray<int>();
+	//vertices = new TArray<FVector>();
+	//triangles = new TArray<int>();
 
 	for (int x = 0; x < squareGrid->squares.Num(); x++)
 	{
@@ -24,7 +24,7 @@ void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UPr
 		}
 	}
 
-	_mesh = NewObject<UProceduralMeshComponent>();
+	//_mesh = NewObject<UProceduralMeshComponent>();
 
 	_mesh->CreateMeshSection(0, vertices, triangles, TArray<FVector>(), TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), true);
 }
