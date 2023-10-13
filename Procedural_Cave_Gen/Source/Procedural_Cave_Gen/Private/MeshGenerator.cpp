@@ -9,20 +9,24 @@ MeshGenerator::~MeshGenerator()
 	
 }
 
-void MeshGenerator::GenerateMesh(TArray<TArray<unsigned char>> _cave, unsigned char _squareSize/*, UStaticMeshComponent* _mesh*/)
+void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UProceduralMeshComponent* _mesh)
 {
 	squareGrid = new SquareGrid(_cave, _squareSize);
 
 	vertices = TArray<FVector>();
-	triangles = TArray<unsigned char>();
+	triangles = TArray<int>();
 
-	for (unsigned char x = 0; x < squareGrid->squares.Num(); x++)
+	for (int x = 0; x < squareGrid->squares.Num(); x++)
 	{
-		for (unsigned char y = 0; y < squareGrid->squares[x].Num(); y++)
+		for (int y = 0; y < squareGrid->squares[x].Num(); y++)
 		{
 			TrigangulateSquare(squareGrid->squares[x][y]);
 		}
 	}
+
+	_mesh = NewObject<UProceduralMeshComponent>();
+
+	_mesh->CreateMeshSection(0, vertices, triangles, TArray<FVector>(), TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), true);
 }
 
 void MeshGenerator::TrigangulateSquare(Square _square)
@@ -195,7 +199,7 @@ void MeshGenerator::MeshFromPoints(TArray<Node*>& _points)
 
 void MeshGenerator::AssignVertices(TArray<Node*>& _points)
 {
-	for (unsigned char i = 0; i < _points.Num(); i++)
+	for (int i = 0; i < _points.Num(); i++)
 	{
 		if (_points[i]->vertexIndex == -1)
 		{

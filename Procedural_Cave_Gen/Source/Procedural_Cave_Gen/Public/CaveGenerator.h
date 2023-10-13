@@ -28,19 +28,21 @@ public:
 
 	FString seed;
 
-	unsigned char width = 60;
-	unsigned char height = 60;
+	int width = 60;
+	int height = 60;
 
 	float timer = 3.0f;
 
-	TArray<TArray<unsigned char>> cave;
+	TArray<TArray<int>> cave;
 
 	void GenerateCave();
 
 	void RandomFillCave();
 	void SmoothCave();
-	unsigned char GetNeighbouringWalls(unsigned char _x, unsigned char _y);
+	int GetNeighbouringWalls(int _x, int _y);
 	void GenerateNewCave(float DeltaTime);
 
 	MeshGenerator meshGen;
+
+	UProceduralMeshComponent* mesh;
 };

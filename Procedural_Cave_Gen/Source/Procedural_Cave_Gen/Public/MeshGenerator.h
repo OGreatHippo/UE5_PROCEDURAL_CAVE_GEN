@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "SquareGrid.h"
+#include "ProceduralMeshComponent.h"
 
 class PROCEDURAL_CAVE_GEN_API MeshGenerator
 {
@@ -10,10 +11,12 @@ public:
 	~MeshGenerator();
 
 	SquareGrid* squareGrid;
-	TArray<FVector> vertices;
-	TArray<unsigned char> triangles;
 
-	void GenerateMesh(TArray<TArray<unsigned char>> _cave, unsigned char _squareSize /*, UStaticMeshComponent* _mesh*/);
+	TArray<FVector> vertices;
+
+	TArray<int> triangles;
+
+	void GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UProceduralMeshComponent* _mesh);
 	void TrigangulateSquare(Square _square);
 	void MeshFromPoints(TArray<Node*>& _points);
 	void AssignVertices(TArray<Node*>& _points);

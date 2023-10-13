@@ -25,21 +25,21 @@ void ACaveGenerator::Tick(float DeltaTime)
 
 void ACaveGenerator::GenerateCave()
 {
-	cave.Init(TArray<unsigned char>(), width);
+	cave.Init(TArray<int>(), width);
 	
-	for (unsigned char x = 0; x < width; x++)
+	for (int x = 0; x < width; x++)
 	{
 		cave[x].Init(0, height);
 	}
 
 	RandomFillCave();
 
-	for (unsigned char i = 0; i < 5; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		SmoothCave();
 	}
 
-	meshGen.GenerateMesh(cave, 1 /*, mesh*/);
+	meshGen.GenerateMesh(cave, 1, mesh);
 }
 
 void ACaveGenerator::RandomFillCave()
@@ -49,9 +49,9 @@ void ACaveGenerator::RandomFillCave()
 	uint32 seedHash = FCrc::StrCrc32(*seed);
 	FRandomStream randomStream(seedHash);
 
-	for (unsigned char x = 0; x < width; x++)
+	for (int x = 0; x < width; x++)
 	{
-		for (unsigned char y = 0; y < height; y++)
+		for (int y = 0; y < height; y++)
 		{
 			float randomValue = randomStream.FRandRange(0, 100);
 
@@ -67,11 +67,11 @@ void ACaveGenerator::RandomFillCave()
 
 void ACaveGenerator::SmoothCave()
 {
-	for (unsigned char x = 0; x < width; x++)
+	for (int x = 0; x < width; x++)
 	{
-		for (unsigned char y = 0; y < height; y++)
+		for (int y = 0; y < height; y++)
 		{
-			unsigned short neighbouringWalls = GetNeighbouringWalls(x, y);
+			int neighbouringWalls = GetNeighbouringWalls(x, y);
 
 			if (neighbouringWalls > 4)
 			{
@@ -85,13 +85,13 @@ void ACaveGenerator::SmoothCave()
 	}
 }
 
-unsigned char ACaveGenerator::GetNeighbouringWalls(unsigned char _x, unsigned char _y)
+int ACaveGenerator::GetNeighbouringWalls(int _x, int _y)
 {
-	unsigned char wallCount = 0;
+	int wallCount = 0;
 
-	for (unsigned char x = _x - 1; x <= _x + 1; x++)
+	for (int x = _x - 1; x <= _x + 1; x++)
 	{
-		for (unsigned char y = _y - 1; y <= _y + 1; y++)
+		for (int y = _y - 1; y <= _y + 1; y++)
 		{
 			if (x >= 0 && x < width && y >= 0 && y < height)
 			{

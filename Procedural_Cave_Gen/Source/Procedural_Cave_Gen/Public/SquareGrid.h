@@ -10,5 +10,5 @@ public:
 	~SquareGrid();
 
 	TArray<TArray<Square>> squares;
-	SquareGrid(TArray<TArray<unsigned char>> _cave, unsigned char _squareSize);
+	SquareGrid(TArray<TArray<int>> _cave, int _squareSize);
 };

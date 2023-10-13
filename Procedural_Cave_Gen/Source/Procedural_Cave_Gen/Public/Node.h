@@ -9,7 +9,7 @@ public:
 	~Node();
 
 	FVector pos;
-	char vertexIndex = -1;
+	int vertexIndex = -1;
 
 	Node(FVector _pos);
 };

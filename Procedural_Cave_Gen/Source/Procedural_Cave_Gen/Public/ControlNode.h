@@ -15,5 +15,5 @@ public:
 
 	FVector pos;
 
-	ControlNode(FVector _pos, bool _active, unsigned char squareSize);
+	ControlNode(FVector _pos, bool _active, int squareSize);
 };
