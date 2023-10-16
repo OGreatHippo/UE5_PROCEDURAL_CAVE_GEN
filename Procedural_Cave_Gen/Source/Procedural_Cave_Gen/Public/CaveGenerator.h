@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "MeshGenerator.h"
-#include "ProceduralMeshComponent.h"
 #include "GameFramework/Actor.h"
 #include "CaveGenerator.generated.h"
 
@@ -44,5 +43,5 @@ public:
 
 	MeshGenerator meshGen;
 
-	UProceduralMeshComponent* mesh;
+	UStaticMeshComponent* mesh;
 };
