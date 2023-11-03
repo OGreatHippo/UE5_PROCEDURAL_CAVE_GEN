@@ -1,17 +1,20 @@
 #include "CaveGenerator.h"
+#include "ProceduralMeshComponent.h"
 
 // Sets default values
 ACaveGenerator::ACaveGenerator()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	
+	mesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("ProceduralMeshComponent"));
 }
 
 // Called when the game starts or when spawned
 void ACaveGenerator::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	GenerateCave();
 }
 

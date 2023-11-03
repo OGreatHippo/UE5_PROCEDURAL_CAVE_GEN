@@ -1,4 +1,5 @@
 #include "MeshGenerator.h"
+#include "ProceduralMeshComponent.h"
 
 MeshGenerator::MeshGenerator()
 {
@@ -9,14 +10,14 @@ MeshGenerator::~MeshGenerator()
 	
 }
 
-void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UStaticMeshComponent* _mesh)
+void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UProceduralMeshComponent* _mesh)
 {
 	squareGrid = new SquareGrid(_cave, _squareSize);
 
+	_mesh->ClearAllMeshSections();
+
 	//vertices = new TArray<FVector>();
 	//triangles = new TArray<int>();
-
-	UStaticMesh* mesh = NewObject<UStaticMesh>(_mesh);
 
 	for (int x = 0; x < squareGrid->squares.Num(); x++)
 	{
@@ -26,12 +27,10 @@ void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, USt
 		}
 	}
 
-	UStaticMesh::FBuildMeshDescriptionsParams params;
-	params.bBuildSimpleCollision = true;
-
-	mesh->BuildFromMeshDescriptions({ &meshDescription }, params);
-
-	_mesh->SetStaticMesh(mesh);
+	if (_mesh)
+	{
+		_mesh->CreateMeshSection(0, vertices, triangles, TArray<FVector>(), TArray<FVector2D>(), TArray<FVector2D>(), TArray<FVector2D>(), TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), false);
+	}
 }
 
 void MeshGenerator::TrigangulateSquare(Square _square)

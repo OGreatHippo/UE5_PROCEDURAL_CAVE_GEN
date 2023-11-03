@@ -1,9 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "MeshGenerator.h"
 #include "GameFramework/Actor.h"
+#include "MeshGenerator.h"
 #include "CaveGenerator.generated.h"
+
+class UProceduralMeshComponent;
 
 UCLASS()
 class PROCEDURAL_CAVE_GEN_API ACaveGenerator : public AActor
@@ -43,5 +45,5 @@ public:
 
 	MeshGenerator meshGen;
 
-	UStaticMeshComponent* mesh;
+	UProceduralMeshComponent* mesh;
 };
