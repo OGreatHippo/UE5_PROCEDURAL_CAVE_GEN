@@ -20,7 +20,7 @@ public:
 	Node* centreBottom;
 	Node* centreLeft;
 
-	int configuration;
+	int configuration = 0;
 
 	Square(ControlNode* _topLeft, ControlNode* _topRight, ControlNode* _bottomRight, ControlNode* _bottomLeft);
 };

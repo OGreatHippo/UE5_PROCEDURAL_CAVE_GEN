@@ -12,6 +12,8 @@ MeshGenerator::~MeshGenerator()
 
 void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UProceduralMeshComponent* _mesh)
 {
+	//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), _cave.Num());
+
 	squareGrid = new SquareGrid(_cave, _squareSize);
 
 	/*if (_mesh)
@@ -30,10 +32,10 @@ void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UPr
 		}
 	}
 
-	for (int i = 0; i <= vertices.Num(); i++)
+	/*for (int i = 0; i <= vertices.Num(); i++)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("The vector value is: %s"), *vertices[i].ToString());
-	}
+	}*/
 
 	if (_mesh)
 	{
