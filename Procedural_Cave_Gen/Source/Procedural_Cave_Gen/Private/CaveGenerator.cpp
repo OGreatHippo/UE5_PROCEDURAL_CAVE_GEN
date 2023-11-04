@@ -8,14 +8,17 @@ ACaveGenerator::ACaveGenerator()
 	PrimaryActorTick.bCanEverTick = true;
 
 	mesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("ProceduralMeshComponent"));
-	mesh->SetComponentTickEnabled(true);
-	mesh->SetMaterial(0, material);
+	
+
 }
 
 // Called when the game starts or when spawned
 void ACaveGenerator::BeginPlay()
 {
 	Super::BeginPlay();
+
+	mesh->SetMaterial(0, material);
+	mesh->SetComponentTickEnabled(true);
 
 	GenerateCave();
 }

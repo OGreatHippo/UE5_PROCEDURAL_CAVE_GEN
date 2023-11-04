@@ -30,6 +30,11 @@ void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UPr
 		}
 	}
 
+	for (int i = 0; i <= vertices.Num(); i++)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("The vector value is: %s"), *vertices[i].ToString());
+	}
+
 	if (_mesh)
 	{
 		_mesh->CreateMeshSection(0, vertices, triangles, TArray<FVector>(), TArray<FVector2D>(), TArray<FVector2D>(), TArray<FVector2D>(), TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), false);
@@ -210,6 +215,7 @@ void MeshGenerator::AssignVertices(TArray<Node*>& _points)
 	{
 		if (_points[i]->vertexIndex == -1)
 		{
+
 			_points[i]->vertexIndex = vertices.Num();
 			vertices.Add(_points[i]->pos);
 		}
