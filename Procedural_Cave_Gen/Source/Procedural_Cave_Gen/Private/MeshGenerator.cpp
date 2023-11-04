@@ -14,8 +14,11 @@ void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UPr
 {
 	squareGrid = new SquareGrid(_cave, _squareSize);
 
-	_mesh->ClearAllMeshSections();
-
+	/*if (_mesh)
+	{
+		_mesh->ClearAllMeshSections();
+	}*/
+	
 	//vertices = new TArray<FVector>();
 	//triangles = new TArray<int>();
 

@@ -6,8 +6,10 @@ ACaveGenerator::ACaveGenerator()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	
+
 	mesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("ProceduralMeshComponent"));
+	mesh->SetComponentTickEnabled(true);
+	mesh->SetMaterial(0, material);
 }
 
 // Called when the game starts or when spawned
@@ -23,7 +25,7 @@ void ACaveGenerator::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	GenerateNewCave(DeltaTime);
+	//GenerateNewCave(DeltaTime);
 }
 
 void ACaveGenerator::GenerateCave()

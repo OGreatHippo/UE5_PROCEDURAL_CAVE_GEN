@@ -46,4 +46,7 @@ public:
 	MeshGenerator meshGen;
 
 	UProceduralMeshComponent* mesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Material)
+	UMaterialInterface* material;
 };
