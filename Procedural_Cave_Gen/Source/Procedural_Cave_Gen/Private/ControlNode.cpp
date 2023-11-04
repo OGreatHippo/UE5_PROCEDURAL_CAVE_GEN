@@ -14,7 +14,8 @@ ControlNode::ControlNode(FVector _pos, bool _active, int squareSize) : Node(_pos
 
 	//Might need to create NewObject for above and right node first -> above = NewObject<Node>();
 	above = new Node();
-	above->pos = pos + FVector(0.0f, 1.0f, 0.0f) * squareSize / 2;
 	right = new Node();
+
+	above->pos = pos + FVector(0.0f, 1.0f, 0.0f) * squareSize / 2;
 	right->pos = pos + FVector(1.0f, 0.0f, 0.0f) * squareSize / 2;
 }

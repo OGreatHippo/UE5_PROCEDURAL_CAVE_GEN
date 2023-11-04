@@ -12,17 +12,15 @@ MeshGenerator::~MeshGenerator()
 
 void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UProceduralMeshComponent* _mesh)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), _cave.Num());
-
 	squareGrid = new SquareGrid(_cave, _squareSize);
 
-	/*if (_mesh)
+	vertices.Empty();
+	triangles.Empty();
+
+	if (_mesh)
 	{
 		_mesh->ClearAllMeshSections();
-	}*/
-	
-	//vertices = new TArray<FVector>();
-	//triangles = new TArray<int>();
+	}
 
 	for (int x = 0; x < squareGrid->squares.Num(); x++)
 	{
@@ -31,11 +29,6 @@ void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UPr
 			TrigangulateSquare(squareGrid->squares[x][y]);
 		}
 	}
-
-	/*for (int i = 0; i <= vertices.Num(); i++)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("The vector value is: %s"), *vertices[i].ToString());
-	}*/
 
 	if (_mesh)
 	{

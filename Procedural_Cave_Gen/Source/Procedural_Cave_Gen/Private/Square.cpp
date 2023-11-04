@@ -36,6 +36,4 @@ Square::Square(ControlNode* _topLeft, ControlNode* _topRight, ControlNode* _bott
 	{
 		configuration += 1;
 	}
-
-	UE_LOG(LogTemp, Warning, TEXT("The config value is: %d"), configuration);
 }

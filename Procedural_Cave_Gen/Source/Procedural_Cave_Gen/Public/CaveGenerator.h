@@ -29,8 +29,8 @@ public:
 
 	FString seed;
 
-	int width = 30;
-	int height = 30;
+	int width = 60;
+	int height = 60;
 
 	float timer = 3.0f;
 
