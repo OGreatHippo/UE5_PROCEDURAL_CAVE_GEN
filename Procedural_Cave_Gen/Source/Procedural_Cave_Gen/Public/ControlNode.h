@@ -13,7 +13,7 @@ public:
 	Node* above;
 	Node* right;
 
-	FVector pos;
+	FVector pos = FVector(0, 0, 0);
 
 	ControlNode(FVector _pos, bool _active, int squareSize);
 };

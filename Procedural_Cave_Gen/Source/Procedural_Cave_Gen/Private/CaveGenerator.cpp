@@ -8,8 +8,6 @@ ACaveGenerator::ACaveGenerator()
 	PrimaryActorTick.bCanEverTick = true;
 
 	mesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("ProceduralMeshComponent"));
-	
-
 }
 
 // Called when the game starts or when spawned
@@ -47,7 +45,7 @@ void ACaveGenerator::GenerateCave()
 		SmoothCave();
 	}
 
-	meshGen.GenerateMesh(cave, 1, mesh);
+	meshGen.GenerateMesh(cave, 100, mesh);
 }
 
 void ACaveGenerator::RandomFillCave()

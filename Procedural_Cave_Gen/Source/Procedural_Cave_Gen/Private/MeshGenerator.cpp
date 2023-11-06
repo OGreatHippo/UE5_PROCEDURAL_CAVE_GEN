@@ -30,6 +30,8 @@ void MeshGenerator::GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UPr
 		}
 	}
 
+	UE_LOG(LogTemp, Warning, TEXT("The tri value is: %d"), trianglevalue);
+
 	if (_mesh)
 	{
 		_mesh->CreateMeshSection(0, vertices, triangles, TArray<FVector>(), TArray<FVector2D>(), TArray<FVector2D>(), TArray<FVector2D>(), TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), false);
@@ -189,18 +191,26 @@ void MeshGenerator::MeshFromPoints(TArray<Node*>& _points)
 	if (_points.Num() >= 3)
 	{
 		CreateTriangle(_points[0], _points[1], _points[2]);
+		UE_LOG(LogTemp, Warning, TEXT("New Triangle"));
+		trianglevalue++;
 	}
 	if (_points.Num() >= 4)
 	{
 		CreateTriangle(_points[0], _points[2], _points[3]);
+		UE_LOG(LogTemp, Warning, TEXT("New Triangle"));
+		trianglevalue++;
 	}
 	if (_points.Num() >= 5)
 	{
 		CreateTriangle(_points[0], _points[3], _points[4]);
+		UE_LOG(LogTemp, Warning, TEXT("New Triangle"));
+		trianglevalue++;
 	}
 	if (_points.Num() >= 6)
 	{
 		CreateTriangle(_points[0], _points[4], _points[5]);
+		UE_LOG(LogTemp, Warning, TEXT("New Triangle"));
+		trianglevalue++;
 	}
 }
 
@@ -210,7 +220,6 @@ void MeshGenerator::AssignVertices(TArray<Node*>& _points)
 	{
 		if (_points[i]->vertexIndex == -1)
 		{
-
 			_points[i]->vertexIndex = vertices.Num();
 			vertices.Add(_points[i]->pos);
 		}
@@ -220,6 +229,9 @@ void MeshGenerator::AssignVertices(TArray<Node*>& _points)
 void MeshGenerator::CreateTriangle(Node* a, Node* b, Node* c)
 {
 	triangles.Add(a->vertexIndex);
+	UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), a->vertexIndex);
 	triangles.Add(b->vertexIndex);
+	UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), b->vertexIndex);
 	triangles.Add(c->vertexIndex);
+	UE_LOG(LogTemp, Warning, TEXT("The integer value is: %d"), c->vertexIndex);
 }

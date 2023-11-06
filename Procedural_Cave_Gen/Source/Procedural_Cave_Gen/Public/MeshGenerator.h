@@ -17,6 +17,8 @@ public:
 
 	TArray<int> triangles;
 
+	int trianglevalue;
+
 	void GenerateMesh(TArray<TArray<int>> _cave, int _squareSize, UProceduralMeshComponent* _mesh);
 	void TrigangulateSquare(Square _square);
 	void MeshFromPoints(TArray<Node*>& _points);
